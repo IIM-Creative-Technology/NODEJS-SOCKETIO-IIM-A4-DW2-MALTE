@@ -4,6 +4,7 @@
     "express": "^4.17.3"
   },
   "devDependencies": {
+    "jest": "^28.0.1",
     "nodemon": "^2.0.15"
   },
   "name": "nodejs-socketio-iim-a4-dw2-malte",
@@ -11,7 +12,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \\\"Error: no __test__ specified\\\" && exit 1",
+    "test": "jest",
     "start": "nodemon app.js",
     "build": "npm install"
   },
