@@ -1,6 +1,24 @@
+const users = require('../../models/user');
+
 const create = (app) => {
     app.post('/user', (req, res) => {
-        res.send('creating user')
+        console.log("Reponse : ", req.body)
+        
+        if (!req.body.email || !req.body.password) {
+            res.status(400).send({
+                status: false,
+                message: 'Aucun mot de passe ou mail a été renseigné'
+            });
+        } else {
+            users.create({
+                email: req.body.email,
+                password: req.body.password,
+                role: req.body.role,
+            }).then((user) => res.status(201).send(user)).catch((error) => {
+                console.log(error);
+                res.status(400).send(error);
+            });
+        }
     })
 };
 const read = (app) => {
