@@ -1,20 +1,19 @@
-function create(app) {
-    console.log("create")
+const create = (app) => {
     app.post('/user', (req, res) => {
-        res.sedn('creating user')
+        res.send('creating user')
     })
 };
-function read(app) {
+const read = (app) => {
     app.get('/user', (req, res) => {
         res.send("reading user")
     })
 };
-function update(app) {
+const update = (app) => {
     app.put('/user', (req, res) => {
         res.send("updating user")
     })
 };
-function del(app) {
+const del = (app) => {
     app.delete('/user', (req, res) => {
         res.send("deleting user")
     })
