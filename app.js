@@ -1,7 +1,6 @@
 const express = require('express')
 const userAPI = require('./api/user/routes');
 const app = express();
-// const client = require('./data/postgresql/data/db');
 const sequelize = require('./data/postgresql/data/db')
 
 try {
