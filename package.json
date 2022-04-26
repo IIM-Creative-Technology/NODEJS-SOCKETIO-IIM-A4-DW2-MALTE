@@ -12,7 +12,6 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \\\"Error: no __test__ specified\\\" && exit 1",
     "test": "jest",
     "start": "nodemon app.js",
     "build": "npm install"
