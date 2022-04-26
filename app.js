@@ -1,16 +1,17 @@
 const express = require('express')
-const userAPI = require('./api/user/routes');
+const userAPI = require('./api/user/routes')
+const path = require('path')
 const app = express()
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
 
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
 } else if ( process.env.NODE_ENV !== 'develop') {
     require('dotenv').config()
 }
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/index.html'))
+})
 
 userAPI.createRoutes(app);
 
