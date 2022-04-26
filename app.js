@@ -3,8 +3,6 @@ const userAPI = require('./api/user/routes')
 const path = require('path')
 const app = express()
 
-app.locals.title = 'myApp'
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'))
 })
