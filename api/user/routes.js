@@ -1,4 +1,4 @@
-const users = require('../../models/users');
+const users = require('../../models/user');
 
 const create = (app) => {
     app.post('/user', (req, res) => {
