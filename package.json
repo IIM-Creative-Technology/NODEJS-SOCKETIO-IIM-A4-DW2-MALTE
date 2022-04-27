@@ -5,7 +5,8 @@
     "express": "^4.17.3",
     "pg": "^8.7.3",
     "sequelize": "^6.19.0",
-    "supertest": "^6.2.3"
+    "supertest": "^6.2.3",
+    "socket.io": "^4.5.0"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.3.0",
