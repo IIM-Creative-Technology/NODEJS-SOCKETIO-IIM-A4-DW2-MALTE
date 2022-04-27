@@ -5,7 +5,13 @@
     "database": "nodejspg",
     "host": "127.0.0.1",
     "port": "5431",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "dialectOptions":{
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "postgres",
@@ -13,7 +19,13 @@
     "database": "nodejspg",
     "host": "127.0.0.1",
     "port": "5431",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "dialectOptions":{
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "production": {
     "username": "postgres",
@@ -21,6 +33,12 @@
     "database": "nodejspg",
     "host": "127.0.0.1",
     "port": "5431",
-    "dialect": "postgresql"
+    "dialect": "postgresql",
+    "dialectOptions":{
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }
