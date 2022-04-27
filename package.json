@@ -22,7 +22,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon app.js",
-    "build": "npm install"
+    "build": "npm install",
+    "migrations": "npx sequelize-cli db:migrate"
   },
   "repository": {
     "type": "git",
