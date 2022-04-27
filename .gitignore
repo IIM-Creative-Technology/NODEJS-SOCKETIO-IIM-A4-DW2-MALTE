@@ -109,3 +109,5 @@ config/
 pgdata/
 
 .idea
+
+ssl/*
