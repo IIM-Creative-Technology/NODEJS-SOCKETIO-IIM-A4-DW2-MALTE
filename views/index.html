@@ -8,6 +8,14 @@
     <title>Malte</title>
 </head>
 <body>
-
+    Hello world !
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:3000');
+        socket.emit('to-server');
+        socket.on('to-client', () => {
+            console.log('Socket received from server !');
+        })
+    </script>
 </body>
 </html>
