@@ -1,7 +1,14 @@
-const users = require('../../models/user');
+const users = require('../models/user');
 
-const create = (app) => {
-    app.post('/user', (req, res) => {
+class UserController {
+
+    static read(req, res)
+    {
+        res.send("reading user");
+    }
+
+    static create(req, res) 
+    {
         console.log("Reponse : ", req.body)
         
         if (!req.body.email || !req.body.password) {
@@ -19,30 +26,18 @@ const create = (app) => {
                 res.status(400).send(error);
             });
         }
-    })
-};
-const read = (app) => {
-    app.get('/user', (req, res) => {
-        res.send("reading user")
-    })
-};
-const update = (app) => {
-    app.put('/user', (req, res) => {
-        res.send("updating user")
-    })
-};
-const del = (app) => {
-    app.delete('/user', (req, res) => {
-        res.send("deleting user")
-    })
-};
-
-module.exports = {
-    createRoutes: (app) => {
-        create(app);
-        read(app);
-        update(app);
-        del(app);
     }
+
+    static update(req, res)
+    {
+        res.send("updating user");
+    }
+
+    static delete(req, res)
+    {
+        res.send("deleting user");
+    }
+
 }
 
+module.exports = UserController;
