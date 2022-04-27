@@ -4,7 +4,7 @@ const list = (app) => {
     app.get('/user', UserController.list)
 };
 const read = (app) => {
-    app.get('/user/{id}', UserController.read)
+    app.get('/user/:id', UserController.read)
 };
 const create = (app) => {
     app.post('/user', UserController.create);

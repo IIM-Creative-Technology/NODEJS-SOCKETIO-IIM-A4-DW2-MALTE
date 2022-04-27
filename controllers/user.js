@@ -9,9 +9,21 @@ class UserController {
         return res.json(users);
     }
 
-    static read(req, res)
+    static async read(req, res)
     {
-        res.send("reading user");
+        // Check params
+        if(!req.params.id) {
+            res.status(400).end('User id parameter is required');
+        }
+
+        // Get user by id
+        const user = await User.findByPk(req.params.id);
+
+        if(!user) {
+            res.status(404).end('User not found');
+        }
+
+        return res.json(user);
     }
 
     static async create(req, res) 
