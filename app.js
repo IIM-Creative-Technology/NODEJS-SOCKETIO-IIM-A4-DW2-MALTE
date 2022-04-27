@@ -43,8 +43,7 @@ httpsServer.listen(process.env.PORT || 3000, () => {
 
 // Socket IO
 io.on("connection", (socket) => {
-    socket.on("to-server", () => {
-        console.log("Socket received from client !");
-        socket.emit("to-client");
+    socket.on('sendMessage', (message) => {
+        socket.broadcast.emit('newMessage', message);
     });
 });
