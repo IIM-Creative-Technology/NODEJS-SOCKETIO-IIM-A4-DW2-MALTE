@@ -1,9 +1,12 @@
-const path = require('path')
+const path = require('path');
+require('dotenv').config();
 
 class MainController {
 
     static index(req, res) {
-        res.sendFile(path.join(__dirname, '../views/index.html'))
+        res.render((path.join(__dirname, '../views/index.ejs')), {
+            url: process.env.NODE_URL
+        });
     }
 
 }

@@ -5,12 +5,6 @@ const router = require('./routes/router');
 const { readFileSync } = require('fs');
 const {Server} = require('socket.io');
 
-// SSL Options for the HTTPS
-const optionsSSl = {
-    key: readFileSync('./ssl/key.pem'),
-    cert: readFileSync('./ssl/cert.pem'),
-}
-
 // Create server
 const app = express();
 const httpsServer = createServer(app);
@@ -23,6 +17,7 @@ if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
