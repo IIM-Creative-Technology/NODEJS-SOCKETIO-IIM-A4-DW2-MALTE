@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/user');
 
 class UserController {
@@ -40,11 +41,12 @@ class UserController {
         }
         
         // Insert user
+        const password = await bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS));
         const user = await User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: req.body.email,
-            password: req.body.password,
+            password: password,
             role: 'user'
         });
 
