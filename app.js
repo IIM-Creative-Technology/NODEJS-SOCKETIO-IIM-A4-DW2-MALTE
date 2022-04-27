@@ -1,15 +1,29 @@
-const express = require('express')
-const app = express()
-const sequelize = require('./data/postgresql/data/db')
-const router = require('./routes/router')
+const express = require('express');
+const { createServer } = require('http');
+const sequelize = require('./config/db');
+const router = require('./routes/router');
+const { readFileSync } = require('fs');
+const {Server} = require('socket.io');
 
-if(process.env.NODE_ENV !== 'production') {
-    require('dotenv').config()
-} else if ( process.env.NODE_ENV !== 'develop') {
-    require('dotenv').config()
+// SSL Options for the HTTPS
+const optionsSSl = {
+    key: readFileSync('./ssl/key.pem'),
+    cert: readFileSync('./ssl/cert.pem'),
 }
 
-app.use(express.json())
+// Create server
+const app = express();
+const httpsServer = createServer(app);
+const io = new Server(httpsServer);
+
+
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+} else if ( process.env.NODE_ENV !== 'develop') {
+    require('dotenv').config();
+}
+
+app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(router);
 
@@ -21,8 +35,16 @@ async function main() {
         console.error('Unable to connect to the database:', error);
     }
   }
-main()
+main();
 
-app.listen(process.env.PORT || 3000, () => {
+httpsServer.listen(process.env.PORT || 3000, () => {
     console.log(`Example app listening on port 3000`)
-})
+});
+
+// Socket IO
+io.on("connection", (socket) => {
+    socket.on("to-server", () => {
+        console.log("Socket received from client !");
+        socket.emit("to-client");
+    });
+});
