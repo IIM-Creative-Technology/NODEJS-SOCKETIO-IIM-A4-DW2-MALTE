@@ -10,10 +10,10 @@ const create = (app) => {
     app.post('/user', UserController.create);
 };
 const update = (app) => {
-    app.put('/user', UserController.update)
+    app.put('/user/:id', UserController.update)
 };
 const del = (app) => {
-    app.delete('/user', UserController.delete)
+    app.delete('/user/:id', UserController.delete)
 };
 
 module.exports = {
