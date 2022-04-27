@@ -17,6 +17,7 @@ if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/public'));
