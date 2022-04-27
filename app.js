@@ -1,6 +1,6 @@
 const express = require('express');
 const { createServer } = require('http');
-const sequelize = require('./data/postgresql/data/db');
+const sequelize = require('./config/db');
 const router = require('./routes/router');
 const { readFileSync } = require('fs');
 const {Server} = require('socket.io');
