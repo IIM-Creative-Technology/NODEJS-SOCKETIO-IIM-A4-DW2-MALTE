@@ -5,12 +5,6 @@ const router = require('./routes/router');
 const { readFileSync } = require('fs');
 const {Server} = require('socket.io');
 
-// SSL Options for the HTTPS
-const optionsSSl = {
-    key: readFileSync('./ssl/key.pem'),
-    cert: readFileSync('./ssl/cert.pem'),
-}
-
 // Create server
 const app = express();
 const httpsServer = createServer(app);
