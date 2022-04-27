@@ -1,6 +1,12 @@
-const users = require('../models/user');
+const User = require('../models/user');
 
 class UserController {
+
+    static async list(req, res)
+    {
+        const users = await User.findAll();
+        res.json(users);
+    }
 
     static read(req, res)
     {
@@ -17,7 +23,7 @@ class UserController {
                 message: 'Aucun mot de passe ou mail a été renseigné'
             });
         } else {
-            users.create({
+            User.create({
                 email: req.body.email,
                 password: req.body.password,
                 role: req.body.role,
