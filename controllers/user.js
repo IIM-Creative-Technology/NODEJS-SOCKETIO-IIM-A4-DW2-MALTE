@@ -5,7 +5,7 @@ class UserController {
     static async list(req, res)
     {
         const users = await User.findAll();
-        res.json(users);
+        return res.json(users);
     }
 
     static read(req, res)
@@ -13,25 +13,42 @@ class UserController {
         res.send("reading user");
     }
 
-    static create(req, res) 
+    static async create(req, res) 
     {
-        console.log("Reponse : ", req.body)
-        
-        if (!req.body.email || !req.body.password) {
-            res.status(400).send({
-                status: false,
-                message: 'Aucun mot de passe ou mail a été renseigné'
-            });
-        } else {
-            User.create({
-                email: req.body.email,
-                password: req.body.password,
-                role: req.body.role,
-            }).then((user) => res.status(201).send(user)).catch((error) => {
-                console.log(error);
-                res.status(400).send(error);
-            });
+        // Check parameters
+        if(!req.body.firstName) {
+            return res.status(400).end('Firstname is required');
         }
+        if(!req.body.lastName) {
+            return res.status(400).end('Lastname is required');
+        }
+        if(!req.body.email) {
+            return res.status(400).end('Email is required');
+        }
+        if(!req.body.password) {
+            return res.status(400).end('Password is required');
+        }
+
+        // Check email is unique
+        const emailExists = await User.findOne({
+            where: {
+                email: req.body.email
+            }
+        });
+        if(emailExists) {
+            return res.status(400).end('Email already used');
+        }
+        
+        // Insert user
+        const user = await User.create({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            role: 'user'
+        });
+
+        return res.json(user);
     }
 
     static update(req, res)
