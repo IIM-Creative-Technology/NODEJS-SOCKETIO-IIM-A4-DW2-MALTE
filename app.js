@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const sequelize = require('./data/postgresql/data/db')
+const sequelize = require('./config/db')
 const router = require('./routes/router')
 
 if(process.env.NODE_ENV !== 'production') {
