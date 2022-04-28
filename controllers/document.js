@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const Document = require('../models/documents');
+const Document = require('../models/document');
 
 class DocumentController {
 
