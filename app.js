@@ -38,11 +38,13 @@ httpsServer.listen(process.env.PORT || 3000, () => {
 
 // Socket IO
 io.on("connection", (socket) => {
+    // Send pseudo
     socket.on('sendPseudo', (pseudo) => {
         socket.pseudo = pseudo;
         socket.broadcast.emit('newUser', pseudo);
     });
 
+    // Send message
     socket.on('sendMessage', (message) => {
         socket.broadcast.emit('newMessage', message, socket.pseudo);
     });

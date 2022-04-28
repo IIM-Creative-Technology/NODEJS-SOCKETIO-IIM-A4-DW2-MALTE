@@ -9,6 +9,12 @@ const read = (app) => {
 const create = (app) => {
     app.post('/document', DocumentController.create);
 };
+const upload = (app) => {
+    app.post('/document/upload', DocumentController.upload);
+};
+const download = (app) => {
+    app.get('/document/:id/download', DocumentController.download);
+};
 const update = (app) => {
     app.put('/document/:id', DocumentController.update)
 };
@@ -21,6 +27,8 @@ module.exports = {
         list(app);
         read(app);
         create(app);
+        upload(app);
+        download(app);
         update(app);
         del(app);
     }
