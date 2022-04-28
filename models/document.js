@@ -15,7 +15,6 @@ const Documents = db.define('Documents', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  
 });
 
 module.exports = Documents;

@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const Document = require('../models/documents');
+const Document = require('../models/document');
 
 class DocumentController {
 
@@ -31,30 +31,17 @@ class DocumentController {
         if(!req.body.name) {
             return res.status(400).end('name is required');
         }
-        if(!req.body.lastName) {
-            return res.status(400).end('Lastname is required');
-        }
         if(!req.body.type) {
             return res.status(400).end('Document type is required');
         }
-        // Check email is unique
-        const nameExists = await Document.findOne({
-            where: {
-                email: req.body.name
-            }
-        });
-        if(nameExists) {
-            return res.status(400).end('Document already upload');
-        }
         
         // Insert document
-        
-        const documents = await Document.create({
+        const document = await Document.create({
             name: req.body.name,
             type: req.body.type,
         });
 
-        return res.json(documents);
+        return res.json(document);
     }
 
     static async update(req, res)
@@ -64,31 +51,21 @@ class DocumentController {
             return res.status(400).end('Document id parameter is required');
         }
 
-        // Get user by id
-        const documents = await Document.findByPk(req.params.id);
-        if(!documents) {
+        // Get document by id
+        const document = await Document.findByPk(req.params.id);
+        if(!document) {
             return res.status(404).end('Documents not found');
         }
 
         // Check POST params
         if(!req.body.name) {
-            return res.status(400).end('name is required');
+            return res.status(400).end('Name is required');
         }
         if(!req.body.type) {
-            return res.status(400).end('Type should be *pdf or *doc');
+            return res.status(400).end('Type is required');
         }
 
-        // Check email is unique
-        const nameExists = await Document.findOne({
-            where: {
-                name: req.body.name
-            }
-        });
-        if(nameExists && nameExists.name !== documents.name) {
-            return res.status(400).end('Name already used');
-        }
-
-        // Update Document upload
+        // Update document
         const updateUpload = await Document.update({
             name: req.body.name,
             type: req.body.type
@@ -102,7 +79,7 @@ class DocumentController {
             return res.status(500).end('An error occured');
         }
 
-        // Get updated user
+        // Get updated document
         const updatedDocument = await Document.findByPk(req.params.id);
 
         return res.json(updatedDocument);
@@ -115,13 +92,13 @@ class DocumentController {
             return res.status(400).end('Document id parameter is required');
         }
 
-        // Get user by id
+        // Get document by id
         const documents = await Document.findByPk(req.params.id);
         if(!documents) {
             return res.status(404).end('Document not found');
         }
 
-        // Delete user
+        // Delete document
         const destroyResult = await Document.destroy({ where: { id: req.params.id } });
         if(!destroyResult) {
             return res.status(500).end('An error occured');
