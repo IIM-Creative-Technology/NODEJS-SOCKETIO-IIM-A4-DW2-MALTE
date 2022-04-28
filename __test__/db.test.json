@@ -1,0 +1,12 @@
+{
+  "getUserUd": {
+    "firstName": "TEST",
+    "lastName": "Trentoeeen",
+    "email": "trentzzdzon@gmafffil.com",
+    "password": "hashedpasordTrested"
+  },
+  "getDocument": {
+    "name": "document",
+    "type": "type"
+  }
+}
