@@ -2,8 +2,8 @@
 
 | Environment | URL                                                                                                         |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| Prod        | <a href="https://node-socket-malte-prod.herokuapp.com/">https://node-socket-malte-prod.herokuapp.com/       |
-| Pre-Prod    | <a href="https://node-socket-malte-develop.herokuapp.com/">https://node-socket-malte-develop.herokuapp.com/ |
+| Prod        | <a href="https://iim-a4-nodejs-malte-grp2.herokuapp.com/">https://iim-a4-nodejs-malte-grp2.herokuapp.com/     |
+
 
 ## Presentation
 
@@ -20,7 +20,9 @@ We choose to use the most use ORM for Node.js : [Sequelize](https://sequelize.or
 
 ### Deployment
 
-Our pre-prod and prod API are host on Heroku. Deployments were greatly ease by the team great knowledge with this host.
+Our prod API are host on Heroku.
+
+Our prod is managed by Github action. On each push on `main` the application is published on Heroku 
 
 We use the official [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) addon the create our databases.
   
@@ -40,7 +42,7 @@ npm install
 ```
 #### NPM commands
 All commands has to be done in the root folder of the project.
-### Build
+### Install
 ```bash
 npm install
 ```
@@ -54,6 +56,16 @@ Starting all the units test by using `$ npm test` in root folder
 ```bash
 npm test
 ```
+
+### ENV
+Create the `.env` file by copying and pasting the `.env.example` 
+
+### Docker
+Now you have to start the docker compose
+```bash
+docker-compose up --build
+```
+
 #### PR template
 
 ```text
@@ -66,6 +78,6 @@ npm test
 | Tickets       | Ticket #/no (if from ticket specify wich one)
 ```
   
-### Github workflow
+### Gitflow
 
-_soon_
+We use the principle of Gitflow for the management of our branches, commits, releases
