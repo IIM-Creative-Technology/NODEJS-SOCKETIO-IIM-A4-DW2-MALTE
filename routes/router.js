@@ -6,6 +6,7 @@ const swaggerDocument = require('../config/swagger.json');
 
 const userAPI = require('./user');
 const documentAPI = require('./document');
+const authAPI = require('./auth')
 
 router.get('/', MainController.index);
 router.use('/api-docs', swaggerUi.serve);
@@ -13,5 +14,6 @@ router.get('/api-docs', swaggerUi.setup(swaggerDocument));
 
 userAPI.createRoutes(router);
 documentAPI.createRoutes(router);
+authAPI.createRoutes(router);
 
 module.exports = router;
