@@ -1,12 +1,32 @@
 {
-  "getUserUd": {
-    "firstName": "TEST",
-    "lastName": "Trentoeeen",
-    "email": "trentzzdzon@gmafffil.com",
-    "password": "hashedpasordTrested"
+  "UserObj": {
+    "firstName": "TdddEST",
+    "lastName": "Trentoedddeen",
+    "email": "trentzzdzon@sdsdgmafffil.com",
+    "password": "sd"
   },
   "getDocument": {
     "name": "document",
     "type": "type"
-  }
+  },
+  "ManyUsers": [
+    {
+      "firstName": "TdddEST",
+      "lastName": "Trentoedddeen",
+      "email": "trentzzdzon@sdsdgmafffil.com",
+      "password": "sd"
+    },
+    {
+      "firstName": "TdddEST",
+      "lastName": "Trentoedddeen",
+      "email": "trentzzdzon@sdsdgmafffil.com",
+      "password": "sd"
+    },
+    {
+      "firstName": "TdddEST",
+      "lastName": "Trentoedddeen",
+      "email": "trentzzdzon@sdsdgmafffil.com",
+      "password": "sd"
+    }
+  ]
 }
