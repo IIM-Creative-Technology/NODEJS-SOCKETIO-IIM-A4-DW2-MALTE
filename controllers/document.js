@@ -46,6 +46,25 @@ class DocumentController {
 
     static async create(req, res) 
     {
+        // Check POST params
+        if(!req.body.name) {
+            return res.status(400).end('Name is required');
+        }
+        if(!req.body.type) {
+            return res.status(400).end('Document type is required');
+        }
+
+        // Insert document
+        const document = await Document.create({
+            name: req.body.name,
+            type: req.body.type,
+        });
+
+        return res.json(document);
+    }
+
+    static async upload(req, res) 
+    {
         const dir = 'uploads/';
 
         // Document storage 
@@ -93,6 +112,23 @@ class DocumentController {
 
             return res.status(200).json(document);
         });
+    }
+
+    static async download(req, res)
+    {
+        // Check GET params
+        if(!req.params.id) {
+            return res.status(400).end('Documents id parameter is required');
+        }
+
+        // Get documents by id
+        const document = await Document.findByPk(req.params.id);
+        if(!document) {
+            return res.status(404).end('Document not found');
+        }
+
+        const relative = '/../uploads/' + document.id + '.' + document.type;
+        res.sendFile(path.resolve(__dirname + relative));
     }
 
     static async update(req, res)
