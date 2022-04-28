@@ -2,7 +2,7 @@ name: CD-preprod
 
 on:
   push:
-    branches-ignore:  [ main ]
+    branches:  [ develop ]
 
 jobs:
   deploy:
