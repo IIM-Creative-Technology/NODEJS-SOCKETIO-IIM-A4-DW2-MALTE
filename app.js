@@ -3,6 +3,7 @@ const { createServer } = require('http');
 const sequelize = require('./config/db');
 const router = require('./routes/router');
 const {Server} = require('socket.io');
+const cors = require('cors');
 
 // Create server
 const app = express();
@@ -16,6 +17,7 @@ if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+app.use(cors());
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
