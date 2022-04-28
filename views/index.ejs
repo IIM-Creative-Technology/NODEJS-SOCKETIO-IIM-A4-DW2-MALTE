@@ -16,6 +16,7 @@
         <div id="msgContainer"></div>
     
         <!-- Form -->
+        <div id="isWritting"></div>
         <form method="POST" onsubmit="sendMessage(event)">
             <input type="text" id="msgInput" autofocus>
             <input type="submit" id="send" value="Envoyer">
@@ -23,34 +24,7 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io.connect('<%= url %>');
-
-        // Listen
-        socket.on('newMessage', (message) => {
-            createMessage(message, 'left');
-        });
-
-        // Emit functions
-        function sendMessage(e) {
-            e.preventDefault();
-            
-            const message = document.getElementById('msgInput').value;
-            document.getElementById('msgInput').value = '';
-
-            if(message.length > 0) {
-                socket.emit('sendMessage', message);
-                createMessage(message, 'right');
-            }
-        }
-
-        // Global functions
-        function createMessage(message, side) {
-            const div = document.createElement('div');
-            div.classList.add('message', side);
-            div.innerText = message;
-            document.getElementById('msgContainer').appendChild(div);
-        }
-    </script>
+    <script>const socket = io.connect('<%= url %>');</script>
+    <script src="/chat.js"></script>
 </body>
 </html>
