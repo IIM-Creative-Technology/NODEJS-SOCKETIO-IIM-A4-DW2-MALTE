@@ -2,7 +2,6 @@ const express = require('express');
 const { createServer } = require('http');
 const sequelize = require('./config/db');
 const router = require('./routes/router');
-const { readFileSync } = require('fs');
 const {Server} = require('socket.io');
 
 // Create server
@@ -39,7 +38,12 @@ httpsServer.listen(process.env.PORT || 3000, () => {
 
 // Socket IO
 io.on("connection", (socket) => {
+    socket.on('sendPseudo', (pseudo) => {
+        socket.pseudo = pseudo;
+        socket.broadcast.emit('newUser', pseudo);
+    });
+
     socket.on('sendMessage', (message) => {
-        socket.broadcast.emit('newMessage', message);
+        socket.broadcast.emit('newMessage', message, socket.pseudo);
     });
 });
